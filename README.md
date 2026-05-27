@@ -1,4 +1,4 @@
-# ba-assemblenempladstosql
+# BA-AssembleNempladsToSQL
 
 Læser CSV-filer fra et mountet netværksdrev, skriver data til SQL Server og arkiverer de behandlede filer. Kører hver mandag kl. 02:00 (Europe/Copenhagen) via Ofelia scheduler.
 
@@ -6,6 +6,7 @@ Læser CSV-filer fra et mountet netværksdrev, skriver data til SQL Server og ar
 
 ## Struktur
 
+```
 .
 ├── main.py
 ├── utils/
@@ -19,6 +20,7 @@ Læser CSV-filer fra et mountet netværksdrev, skriver data til SQL Server og ar
 ├── requirements.txt
 ├── .env.example
 └── .gitignore
+```
 
 ---
 
@@ -53,28 +55,35 @@ Kopiér `.env.example` til `.env` og udfyld værdierne.
 
 Opret det eksterne CIFS-volume før deployment:
 
+```powershell
 docker volume create `
   --driver local `
   --opt type=cifs `
   --opt "device=//SERVER/Share$" `
   --opt "o=username=USER,password=PASS,vers=3.0" `
   filer-assemblenemplads
+```
 
 ---
 
 ## Lokal udvikling
 
+```bash
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 python main.py
+```
 
 ---
 
 ## Docker
 
 Byg og kør lokalt:
+
+```bash
 docker compose up --build
+```
 
 Portainer:
 - Brug `ghcr.io/hjk-automatisering/ba-assemblenempladstosql:main` som image
