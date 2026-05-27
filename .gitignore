@@ -1,0 +1,22 @@
+# Environment
+.env
+.venv
+venv
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+
+# PyInstaller
+build/
+dist/
+*.spec
+
+# Docker
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
