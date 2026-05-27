@@ -1,18 +1,18 @@
 services:
-  ba-assemblenempladstosql:
-    container_name: ba-assemblenempladstosql
-    # image: 'ghcr.io/hjk-automatisering/ba-assemblenempladstosql:main' # Uncomment on portainer
+  ba-assemble-nemplads-to-sql:
+    container_name: ba-assemble-nemplads-to-sql
+    # image: 'ghcr.io/hjk-automatisering/ba-assemble-nemplads-to-sql:main' # Uncomment on portainer
     build: . # Remove on portainer
     volumes:
-      - filer-assemblenemplads:/shr/AssembleNemplads
+      - filer-assemble-nemplads:/shr/AssembleNemplads
     env_file:
       - .env # stack.env on portainer
     environment:
       - TZ=Europe/Copenhagen
     labels:
       ofelia.enabled: "true"
-      ofelia.job-run.ba-assemblenempladstosql.schedule: "${CRON_SCHEDULE}"
-      ofelia.job-run.ba-assemblenempladstosql.container: "ba-assemblenempladstosql"
+      ofelia.job-run.ba-assemble-nemplads-to-sql.schedule: "${CRON_SCHEDULE}"
+      ofelia.job-run.ba-assemble-nemplads-to-sql.container: "ba-assemble-nemplads-to-sql"
 
   ofelia:
     image: mcuadros/ofelia:latest
@@ -21,8 +21,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     depends_on:
-      - ba-assemblenempladstosql
+      - ba-assemble-nemplads-to-sql
 
 volumes:
-  filer-assemblenemplads:
+  filer-assemble-nemplads:
     external: true
