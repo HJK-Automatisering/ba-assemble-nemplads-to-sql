@@ -1,4 +1,3 @@
-```md
 # ba-assemblenempladstosql
 
 Læser CSV-filer fra et mountet netværksdrev, skriver data til SQL Server og arkiverer de behandlede filer. Kører hver mandag kl. 02:00 (Europe/Copenhagen) via Ofelia scheduler.
@@ -95,4 +94,3 @@ Scriptet forventer følgende filer i `FILE_PATH`:
 | `Stuer_YYYYMMDD.csv` | Stuedata |
 
 Behandlede filer flyttes til `FILE_PATH/Arkiv` efter en vellykket kørsel. Eksisterende filer i `Arkiv` slettes inden flytning.
-```
