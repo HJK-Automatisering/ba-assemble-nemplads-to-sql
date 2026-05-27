@@ -1,4 +1,4 @@
-# BA-AssembleNempladsToSQL
+# BA-Assemble-Nemplads-To-SQL
 
 Læser CSV-filer fra et mountet netværksdrev, skriver data til SQL Server og arkiverer de behandlede filer. Kører hver mandag kl. 02:00 (Europe/Copenhagen) via Ofelia scheduler.
 
@@ -61,7 +61,7 @@ docker volume create `
   --opt type=cifs `
   --opt "device=//SERVER/Share$" `
   --opt "o=username=USER,password=PASS,vers=3.0" `
-  filer-assemblenemplads
+  filer-assemble-nemplads
 ```
 
 ---
@@ -86,9 +86,9 @@ docker compose up --build
 ```
 
 Portainer:
-- Brug `ghcr.io/hjk-automatisering/ba-assemblenempladstosql:main` som image
+- Brug `ghcr.io/hjk-automatisering/ba-assemble-nemplads-to-sql:main` som image
 - Brug `stack.env` i stedet for `.env`
-- Det eksterne volume `filer-assemblenemplads` skal eksistere på hosten
+- Det eksterne volume `filer-assemble-nemplads` skal eksistere på hosten
 
 ---
 
