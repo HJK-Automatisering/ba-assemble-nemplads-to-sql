@@ -1,6 +1,6 @@
 services:
-  ba-assemble-nemplads-to-sql:
-    container_name: ba-assemble-nemplads-to-sql
+  ba-assemble-nemplads-to-sql-worker:
+    container_name: ba-assemble-nemplads-to-sql-worker
     # image: 'ghcr.io/hjk-automatisering/ba-assemble-nemplads-to-sql:main' # Uncomment on portainer
     build: . # Remove on portainer
     command: sleep infinity
@@ -13,19 +13,19 @@ services:
       - TZ=Europe/Copenhagen
     labels:
       ofelia.enabled: "true"
-      ofelia.job-exec.ba-assemble-nemplads-to-sql.schedule: "${CRON_SCHEDULE}"
-      ofelia.job-exec.ba-assemble-nemplads-to-sql.container: "ba-assemble-nemplads-to-sql"
-      ofelia.job-exec.ba-assemble-nemplads-to-sql.command: "python main.py"
+      ofelia.job-exec.ba-assemble-nemplads-to-sql-worker.schedule: "${CRON_SCHEDULE}"
+      ofelia.job-exec.ba-assemble-nemplads-to-sql-worker.container: "ba-assemble-nemplads-to-sql-worker"
+      ofelia.job-exec.ba-assemble-nemplads-to-sql-worker.command: "python main.py"
 
-  ofelia:
+  ba-assemble-nemplads-to-sql-scheduler:
     image: mcuadros/ofelia:latest
-    container_name: ofelia
+    container_name: ba-assemble-nemplads-to-sql-scheduler
     restart: always
     command: daemon --docker
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     depends_on:
-      - ba-assemble-nemplads-to-sql
+      - ba-assemble-nemplads-to-sql-worker
 
 volumes:
   filer-assemble-nemplads:
