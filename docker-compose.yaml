@@ -18,6 +18,7 @@ services:
     image: mcuadros/ofelia:latest
     container_name: ofelia
     restart: always
+    command: daemon --docker
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     depends_on:
